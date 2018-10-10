@@ -6,9 +6,9 @@ import Prompt from './prompt';
 // import PropTypes from 'prop-types';
 
 let emptyState = {
-  adj: '',
-  noun: '',
-  verb: '',
+  adj: [],
+  noun: [],
+  verb: [],
   done: false
 };
 
@@ -30,14 +30,24 @@ class App extends React.Component {
   handleAddWord (target) {
     console.log('WORD OBJECT', target);
     const { name, value } = target;
+    console.log('object destructure', target.adj);
     console.log('APP NAME VALUE', { name, value })
     // const { newAdj, newNoun, newVerb } = event; // destructuring word obj
-    this.setState({
-      [name]: value
-    }, ()=>{
-      this.setState({done: true })
+    // this.setState({
+    //   [name]: value
+    // }, ()=>{
+    //   this.setState({done: true })
+    //   console.log('app state', this.state);
+    // })
+    this.setState((prevState, { [name]: value })=> ({
+      adj: [value, ...prevState.adj ],
+      noun: [value, ...prevState.noun],
+      verb: [value, ...prevState.verb]
+    }), ()=>{
+      this.setState({done: true})
       console.log('app state', this.state);
-    });
+    })
+    ;
     
   }
 
