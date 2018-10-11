@@ -19,7 +19,7 @@ class App extends React.Component {
     super(props); // initialises 'this'
     this.state = emptyState;// initializing state, must be done first
     autoBind.call(this, App); 
-    const storageKey = 'storedWord';
+    // const storageKey = 'storedWord';
   }
   
   handleChangeWord (target) {

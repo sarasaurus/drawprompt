@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import autoBind from '../utils/utils';
 
-const storageKey = 'storedWord';
+// const storageKey = 'storedWord';
 
 class Prompt extends React.Component {
   constructor(props) {
@@ -21,8 +21,8 @@ class Prompt extends React.Component {
   render () {
     const word = this.props.words;
     console.log('props in prompt', word.done);
-    console.log('storage key', storageKey);
-    console.log('local storage', localStorage.getItem(storageKey));
+    // console.log('storage key', storageKey);
+    // console.log('local storage', localStorage.getItem(storageKey));
 
     //TODO: modify function to retrieve from local storage
 
