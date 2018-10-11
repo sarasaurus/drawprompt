@@ -46,8 +46,8 @@ class App extends React.Component {
       this.setState({done: true })
       localStorage.setItem(`${this.storageKey}`, JSON.stringify(this.state))
       console.log('app state', this.state);
-      this.setState(emptyState);
-      console.log('app state emptied', this.state);
+      // this.setState(emptyState);
+      // console.log('app state emptied', this.state);
     })
     
 
