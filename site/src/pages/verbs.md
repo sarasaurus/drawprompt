@@ -1,0 +1,1 @@
+running, jumping, shouting, weaving, diving, bombing, reading, sleeping, lounging, zinging, transforming, preparing

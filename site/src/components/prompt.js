@@ -1,14 +1,16 @@
 import React from 'react';
+import { graphql } from "gatsby";
 import PropTypes from 'prop-types';
 import autoBind from '../utils/utils';
+
 
 // const storageKey = 'storedWord';
 
 class Prompt extends React.Component {
   constructor(props) {
     super(props); // initialises 'this'
+    console.log('data', this.props.data)
     autoBind.call(this, Prompt);
-   
   }
   // handleUpdate () {
   //   console.log('ADJ', this.props.adj);
@@ -62,6 +64,26 @@ class Prompt extends React.Component {
        {/* <p>Draw a {localStorage.getItem(storageKey) ? `${JSON.parse(localStorage.getItem(storageKey)).adj}, ` :  '. . . ' } 
        {localStorage.getItem(storageKey) ? `${JSON.parse(localStorage.getItem(storageKey)).noun}, ` : ''} 
        {localStorage.getItem(storageKey) ? `${JSON.parse(localStorage.getItem(storageKey)).verb}!` : '' }</p>  */}
+           {/* <table>
+      <thead>
+        <tr>
+          <th>relativePath</th>
+          <th>prettySize</th>
+          <th>extension</th>
+          <th>birthTime</th>
+        </tr>
+      </thead>
+      <tbody>
+        {this.props.data.allFile.edges.map(({ node }, index) => (
+          <tr key={index}>
+            <td>{node.relativePath}</td>
+            <td>{node.prettySize}</td>
+            <td>{node.extension}</td>
+            <td>{node.birthTime}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table> */}
 
        </div>
     )
@@ -70,5 +92,18 @@ class Prompt extends React.Component {
 Prompt.propTypes = {
   words: PropTypes.object,
 };
-
+export const query = graphql`
+  query {
+    allFile {
+      edges {
+        node {
+          relativePath
+          prettySize
+          extension
+          birthTime(fromNow: true)
+        }
+      }
+    }
+  }
+`
 export default Prompt;

@@ -1,0 +1,1 @@
+dude, genius, kid, goon, weirdo, snake, house, criminal, cat, unicorn, gryffin, mailperson, skater, spinner

@@ -1,0 +1,1 @@
+red, blue, yellow, persnickety, lame, dumb, shifty, cranky, excitable, wonderful, fantastic, quizzical 
