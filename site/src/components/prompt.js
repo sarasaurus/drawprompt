@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import autoBind from '../utils/utils';
 
-const storageKey = 'storedWord';
+const storageKey = 'data';
 
 class Prompt extends React.Component {
   constructor(props) {

@@ -13,13 +13,14 @@ let emptyState = {
 };
 
 // TODO: maybe I actually need a database model!
+const storageKey = 'data';
 
 class App extends React.Component {
   constructor(props) {
     super(props); // initialises 'this'
     this.state = emptyState;// initializing state, must be done first
     autoBind.call(this, App); 
-    const storageKey = 'storedWord';
+    
   }
   
   handleChangeWord (target) {
@@ -31,7 +32,7 @@ class App extends React.Component {
       console.log('app handle change', this.state);
     })
   }
-  handleAddWord (target) {
+  handleSubmitWord (target) {
     console.log('WORD OBJECT', target);
     const { name, value } = target;
     console.log('object destructure', target.adj);
@@ -44,7 +45,29 @@ class App extends React.Component {
       [name]: value
     }, ()=>{
       this.setState({done: true })
-      localStorage.setItem(`${this.storageKey}`, JSON.stringify(this.state))
+      if (localStorage.getItem(storageKey) !== null) {
+        const storage = JSON.parse(localStorage.getItem('data'));
+        console.log('storage?', storage);
+        const { newAdj, newVerb, newNoun } = this.state;
+        storage.adj.push(newAdj);
+        storage.noun.push(newNoun);
+        storage.verb.push(newVerb);
+        console.log('pushed stroage', JSON.stringify(storage));
+        localStorage.setItem(`${storageKey}`, JSON.stringify(storage)); 
+        this.setState(emptyState);
+        console.log('app state emptied', this.state);
+      }
+      const storage = {
+        adj: [],
+        noun: [],
+        verb: []
+      };
+      const {adj, noun, verb } = this.state;
+      storage.adj.push(adj);
+      storage.noun.push(noun);
+      storage.verb.push(verb);
+      console.log('app state', storage);
+      localStorage.setItem(`${storageKey}`, JSON.stringify(storage))
       console.log('app state', this.state);
       this.setState(emptyState);
       console.log('app state emptied', this.state);
@@ -66,7 +89,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='main-container'>
-      <WordForm onChange = {this.handleChangeWord} onComplete={this.handleAddWord}/>
+      <WordForm onChange = {this.handleChangeWord} onComplete={this.handleSubmitWord}/>
       <Prompt words={ this.state } />
       </div>
     )
