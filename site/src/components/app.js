@@ -6,9 +6,9 @@ import Prompt from './prompt';
 // import PropTypes from 'prop-types';
 
 let emptyState = {
-  adj: '',
-  noun: '',
-  verb: '',
+  adj: [],
+  noun: [],
+  verb: [],
   done: false
 };
 
@@ -27,7 +27,7 @@ class App extends React.Component {
     console.log('APP TARGET', target);
     const { name, value } = target;
     return this.setState({
-      [name]: value
+      [name]: [value]
     }, ()=>{
       console.log('app handle change', this.state);
     })
