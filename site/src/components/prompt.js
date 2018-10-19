@@ -53,10 +53,10 @@ class Prompt extends React.Component {
       <div>
         <h1>Enter words above</h1>
        
-       {/* // this code is for retrieving from state, i dont use the function
-       <p>Draw a {this.props.words.done ? `${word.adj}, ` :  '. . . ' } 
-       {this.props.words.done ? `${word.noun}, ` : ''} 
-       {this.props.words.done ? `${word.verb}!` : '' }</p> */}
+       {/* // this code is for retrieving from state, i dont use the function */}
+       <p>ADJECTIVES: {this.props.words.done ? `${word.adj}, ` :  '. . . ' } </p>
+       <p>NOUNS: {this.props.words.done ? `${word.noun}, ` : '. . .'} </p>
+       <p>VERBS: {this.props.words.done ? `${word.verb}, ` : '. . .' }</p>
        {/* {listWordsJSX(word)} */}
   {/* this code is fro getting rom local storage */}
        <p>Draw a {localStorage.getItem(storageKey) ? `${JSON.parse(localStorage.getItem(storageKey)).adj}, ` :  '. . . ' } 

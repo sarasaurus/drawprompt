@@ -12,7 +12,7 @@ let emptyState = {
   done: false
 };
 
-// TODO: maybe I actually need a database model!
+// TODO: why is state duplicating and overwriting itself?
 const storageKey = 'data';
 
 class App extends React.Component {
@@ -88,16 +88,29 @@ class App extends React.Component {
     console.log('target', target);
     const { adj, verb, noun } = target;
     console.log(`adj: ${adj.value}, verb: ${verb.value}, noun: ${noun.value}`);
-    return this.setState((previousState) => {
-      return {
-        adj: [...previousState.adj, adj.value ],
-        noun: [...previousState.noun, noun.value ],
-        verb: [...previousState.verb, verb.value ],
-        done: true,
-      };
-    }, ()=>{
-      console.log('state after submit:', this.state)
-    });
+    if (this.state.done === false && this.state === emptyState) {
+      return this.setState(() => {
+        return {
+          adj: [adj.value ],
+          noun: [noun.value ],
+          verb: [verb.value ],
+          done: true,
+        };
+      }, ()=>{
+        console.log('state after submit:', this.state)
+      });
+    } else {
+      return this.setState((previousState) => {
+        return {
+          adj: [...previousState.adj, adj.value ],
+          noun: [...previousState.noun, noun.value ],
+          verb: [...previousState.verb, verb.value ],
+          done: true,
+        };
+      }, ()=>{
+        console.log('state after submit:', this.state)
+      });
+    }
   }
   
 
